@@ -27,45 +27,41 @@ const useStyles = makeStyles(theme => ({
 
 function Home (props) {
   const [anchorEl, setAnchorEl] = React.useState(false);
-  console.log("TCL: Home -> props", props)
   const classes = useStyles();
   const refElement = useRef(null);
 
   const getRandomJoke = () => {
-    console.log('rand');
     props.fetchJokes();
   };
 
-  function handleClick(event) {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
     // props.fetchCategories();
   }
 
-  function handleClose() {
+  const handleClose = () => {
     setAnchorEl(null);
   }
 
-  function getJokeByCategory(e) {
-    console.log("TCL: handleClose -> e.target", e.target.textContent)
+  const getJokeByCategory = e => {
     const selectedCategory = e.target.textContent;
     props.fetchJokes(selectedCategory);
   }
 
-  function saveJoke() {
-    const jokeId = refElement.current.attributes.id.value
-    console.log('%c Log this:', 'background: black; color: red;',  props.state );
-    console.log("TCL: saveJoke -> jokeId", jokeId)
+  const saveJoke = () => {
+    const jokeId = refElement.current.attributes ? refElement.current.attributes.id.value : null
     const selectedJoke = refElement.current.textContent;
-    console.log("TCL: saveJoke -> selectedJoke", selectedJoke)
+    if (!jokeId) return 
     props.saveJoke(jokeId, selectedJoke)
   }
 
   const jokes = props.state.value ? (
-    <div className='container' ref={refElement} id={props.state.id}>{ props.state.value }</div>
+    <div className={classes.root} ref={refElement} id={props.state.id}>{ props.state.value }</div>
     ) : (
-      <div className="container"> Loading new jokes...</div>
+      <div> Loading new jokes...</div>
     )
 
+  // const Menu = 
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -77,17 +73,17 @@ function Home (props) {
         </Grid>
         
         <Grid item xs={6}>
-            <Button variant="contained" color="primary" className={classes.button} onClick={getRandomJoke}>
-              Random
-            </Button>
-            <Button variant="contained" color="primary" className={classes.button} onClick={handleClick}> Select Category</Button>
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
+          <Button variant="contained" color="primary" className={classes.button} onClick={getRandomJoke}>
+            Random
+          </Button>
+          <Button variant="contained" color="primary" className={classes.button} onClick={handleClick}> Select Category</Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
             {
               props.state.categories ? props.state.categories.map((value, index) => {
                 if (index <= 3) {
@@ -104,7 +100,6 @@ function Home (props) {
 };
 
 const mapStateToProps = (state) => {
-  console.log("TCL: mapStateToProps -> state", state)
   return {
     state
   }

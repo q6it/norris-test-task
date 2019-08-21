@@ -36,15 +36,13 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
-  fake: {
-    backgroundColor: grey[200],
-    height: theme.spacing(1),
-    margin: theme.spacing(2),
-    // Selects every two elements among any group of siblings.
-    '&:nth-child(2n)': {
-      marginRight: theme.spacing(3),
-    },
+  navBar: {
+    backgroundColor: '#616161'
   },
+  link: {
+    // backgroundColor: '#f5f5f5',
+    color: 'white'
+  }
 }));
 
 export default function ButtonAppBar() {
@@ -57,7 +55,7 @@ export default function ButtonAppBar() {
         {/* <ClickAwayListener onClickAway={handleClickAway}> */}
           <Grid container>
             <Grid item xs={12}>
-              <AppBar  position="static">
+              <AppBar className={classes.navBar} position="static">
                 <Toolbar>
                   {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                       <MenuIcon />
@@ -67,11 +65,11 @@ export default function ButtonAppBar() {
                   </Typography>
                   {/* <Link component={RouterLink} to="/">Home</Link> */}
                   {/* <Link component={RouterLink} to="/"></Link> */}
-                  <Button color="inherit" className={classes.button}><RouterLink to="/" >Jokes</RouterLink></Button>
+                  <Button color="inherit" className={classes.button}><RouterLink className={classes.link} to="/" >Jokes</RouterLink></Button>
                   <Button color="inherit" className={classes.button}>
-                    <RouterLink to="/favorites">Favorite jokes</RouterLink>
+                    <RouterLink className={classes.link} to="/favorites">Favorite jokes</RouterLink>
                   </Button>
-                  <Button color="inherit" className={classes.button}><RouterLink to="/about" >About</RouterLink></Button>
+                  <Button color="inherit" className={classes.button}><RouterLink className={classes.link} to="/about" >About</RouterLink></Button>
                 </Toolbar>
               </AppBar>
             </Grid>

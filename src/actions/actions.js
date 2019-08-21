@@ -3,11 +3,10 @@ import axios from 'axios';
 
 const FETCH_JOKES = 'FETCH_JOKES';
 const FETCH_CATEGORY = 'FETCH_CATEGORY';
-// const SAVE_RANDOM_FAVORITE_JOKE = 'ADD_RANDOM_FAVORITE_JOKE';
 const SAVE_JOKE = 'SAVE_JOKE';
-// const ADD_FAVORITE_JOKE_BY_CATEGORY = 'ADD_FAVORITE_JOKE_BY_CATEGORY';
 const EDIT_JOKE = 'EDIT_JOKE';
 const DELETE_JOKE = 'DELETE_JOKE';
+const UPDATE_JOKE = 'UPDATE_JOKE';
 
 
 export function fetchJokes(category) {
@@ -60,5 +59,20 @@ export function deleteJoke(id) {
   return {
     type: DELETE_JOKE,
     id
+  }
+}
+
+export function editJoke(id) {
+  return {
+    type: EDIT_JOKE,
+    id
+  }
+}
+
+export function updateJoke(id, joke) {
+  return {
+    type: UPDATE_JOKE,
+    id,
+    joke
   }
 }
