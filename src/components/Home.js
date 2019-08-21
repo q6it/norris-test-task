@@ -38,7 +38,7 @@ function Home (props) {
 
   function handleClick(event) {
     setAnchorEl(event.currentTarget);
-    props.fetchCategories();
+    // props.fetchCategories();
   }
 
   function handleClose() {
@@ -53,6 +53,7 @@ function Home (props) {
 
   function saveJoke() {
     const jokeId = refElement.current.attributes.id.value
+    console.log('%c Log this:', 'background: black; color: red;',  props.state );
     console.log("TCL: saveJoke -> jokeId", jokeId)
     const selectedJoke = refElement.current.textContent;
     console.log("TCL: saveJoke -> selectedJoke", selectedJoke)
@@ -60,7 +61,7 @@ function Home (props) {
   }
 
   const jokes = props.state.value ? (
-    <div className='container' ref={refElement} id={props.state.id}>{ props.state.value  }</div>
+    <div className='container' ref={refElement} id={props.state.id}>{ props.state.value }</div>
     ) : (
       <div className="container"> Loading new jokes...</div>
     )
@@ -109,11 +110,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    // createContact: contact => dispatch(contactAction.createContact(contact)),
     fetchJokes: jokes => dispatch(actionCreators.fetchJokes(jokes)),
-    fetchCategories: categories => dispatch(actionCreators.fetchCategories(categories)),
+    // fetchCategories: categories => dispatch(actionCreators.fetchCategories(categories)),
     saveJoke: (id,joke) => dispatch(actionCreators.saveJoke(id, joke)),
     
     // deleteContact: index =>dispatch(contactAction.deleteContact(index))

@@ -11,14 +11,10 @@ const DELETE_JOKE = 'DELETE_JOKE';
 
 
 export function fetchJokes(category) {
-  console.log('fetched NEW joke');
   const randomUrl = 'https://api.chucknorris.io/jokes/random';
   const baseUlr = category ? `${randomUrl}?category=${category}` : randomUrl
-
-  console.log("TCL: fetchJokes -> category", category)
   return(dispatch) => {
     return axios.get(baseUlr).then(response => {
-      console.log("TCL: fetchJokes -> response", response)
       dispatch(showJokes(response.data))
     })
     .catch(error => {
@@ -28,7 +24,6 @@ export function fetchJokes(category) {
 }
 
 export function showJokes(joke) {
-  console.log("TCL: showJokes -> jokes", joke)
   return {
     type: FETCH_JOKES,
     joke: joke
@@ -54,10 +49,16 @@ export function showCategories(categories) {
 }
 
 export function saveJoke(id, joke) {
-  console.log("TCL: ACtion saveJoke -> joke", joke)
   return {
     type: SAVE_JOKE,
     id,
     joke
+  }
+}
+
+export function deleteJoke(id) {
+  return {
+    type: DELETE_JOKE,
+    id
   }
 }
