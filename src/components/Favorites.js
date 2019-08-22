@@ -30,8 +30,10 @@ function FavoriteJokes(props) {
   const classes = useStyles();
   // const refElement = useRef(null);
   // render() {
-    console.log("favorite comp props", props)
-    const favoriteJokes = props.state.savedJokes ? props.state.savedJokes : "no saved jokes jet"
+  console.log("favorite comp props", props)
+  const favoriteJokes = props.state.savedJokes ? props.state.savedJokes : "no saved jokes jet"
+
+  console.log("TCL: //render -> favoriteJokes", favoriteJokes)
 
   const deleteJoke = id => {
     props.deleteJoke(id)
@@ -61,7 +63,6 @@ function FavoriteJokes(props) {
 }
 
 const mapStateToProps = state => {
-  console.log("TCL: mapStateToProps -> state", state)
   return {
     state
   }

@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     margin: theme.spacing(1),
+    backgroundColor: '#3e2723',
   },
 }));
 
@@ -51,28 +52,34 @@ function Home (props) {
   const saveJoke = () => {
     const jokeId = refElement.current.attributes ? refElement.current.attributes.id.value : null
     const selectedJoke = refElement.current.textContent;
+    console.log("TCL: saveJoke -> refElement.current", refElement.current)
     if (!jokeId) return 
     props.saveJoke(jokeId, selectedJoke)
   }
 
-  const jokes = props.state.value ? (
+  const fetchedJoke = props.state.value ? (
     <div className={classes.root} ref={refElement} id={props.state.id}>{ props.state.value }</div>
     ) : (
       <div> Loading new jokes...</div>
-    )
+    );
+    console.log("TCL: Home -> props", props)
+  // const alertMessage = props.state.savedJokes ? props.state.savedJokes.map(x => {
+  //   if (x.saved){
+  //     return <div>already saved</div>
+  //   } else {
 
-  // const Menu = 
+  //   }
+  //   }) : ''
+  // console.log("TCL: Home -> alertMessage", alertMessage)
+
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>
-            { jokes }
-            <Button variant="contained" color="primary" className={classes.button} onClick={saveJoke}>Save</Button>
-          </Paper>
-        </Grid>
-        
-        <Grid item xs={6}>
+      <Grid container
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
+        <Grid item xs={12}>
           <Button variant="contained" color="primary" className={classes.button} onClick={getRandomJoke}>
             Random
           </Button>
@@ -93,6 +100,14 @@ function Home (props) {
             }
           </Menu>
         </Grid>
+
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>
+            { fetchedJoke }
+            <Button variant="contained" color="primary" className={classes.button} onClick={saveJoke}>Save</Button>
+            {/* { alertMessage } */}
+          </Paper>
+        </Grid>
       </Grid>
     </div>
   );
@@ -100,6 +115,7 @@ function Home (props) {
 };
 
 const mapStateToProps = (state) => {
+  console.log("TCL: mapStateToProps -> state", state)
   return {
     state
   }

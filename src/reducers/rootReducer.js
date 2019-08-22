@@ -21,8 +21,8 @@ const rootReducer = (state = initState, action) => {
       categories: action.categories
     }
   } else if (action.type === 'SAVE_JOKE') {
-    console.log('TCL: rootReducer -> action', action);
-    const index = state.savedJokes.findIndex(el => el.id == action.id);
+    const index = state.savedJokes.findIndex(el => el.id === action.id);
+    console.log("TCL: rootReducer -> index", index)
     if(index === -1) {
       return {
         ...state,
@@ -33,12 +33,27 @@ const rootReducer = (state = initState, action) => {
             joke: action.joke,
             // category: action.category
             //jokeCreated: action.created_at
-            edit: false
+            edit: false,
+            saved: false
           }
         ]
       }
-    } 
-    return {...state}
+    } else {
+      console.log("TCL: rootReducer -> state.savedJokes", state.savedJokes)
+      return {
+        ...state,
+        // savedJokes: 
+        //   state.savedJokes.map(x => {
+        //     console.log("TCL: rootReducer -> x", x)
+        //     console.log("TCL: rootReducer -> action.id ", action.id )
+        //     if (x.id === action.id) {
+        //       x.saved = !x.saved
+        //       return x
+        //     }
+        //   })
+          // ...state.savedJokes,
+      }
+    }
   } else if (action.type === 'DELETE_JOKE') {
     return {
       ...state,
@@ -69,6 +84,8 @@ const rootReducer = (state = initState, action) => {
             joke: action.joke,
             edit: !joke.edit
           }
+        } else {
+          return {...joke}
         }
       })
     }
