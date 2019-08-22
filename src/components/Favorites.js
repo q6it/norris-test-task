@@ -17,13 +17,17 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3, 2)
   },
   paper: {
-    padding: theme.spacing(5),
+    padding: theme.spacing(1),
+    margin: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
   button: {
     margin: theme.spacing(1),
   },
+  jokeActionButtons: {
+    margin: theme.spacing(1),
+  }
 }))
 
 function FavoriteJokes(props) {
@@ -53,8 +57,8 @@ function FavoriteJokes(props) {
       <Typography variant="h6" component="h3" >
         {value.joke}
       </Typography>
-      <Button onClick={() => editJoke(value.id)}>Edit</Button>
-      <Button onClick={() => deleteJoke(value.id)}>Delete</Button>
+      <Button className={classes.jokeActionButtons} variant="contained" color="inherit" onClick={() => editJoke(value.id)}>Edit</Button>
+      <Button className={classes.jokeActionButtons} variant="contained" color="inherit" onClick={() => deleteJoke(value.id)}>Delete</Button>
     </Paper> : <EditJoke key={i} id={value.id} jokeValue={value}/>
     })}
     </div>

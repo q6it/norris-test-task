@@ -21,13 +21,13 @@ console.log("TCL: About -> props", props)
   const classes = useStyles();
 
   return (
-    <div className="About">
+    <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Typography variant="h4" className={classes.title}>
-                Should be text about me??? Srly ??
+                About me
               </Typography>
               <p className="text">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, ducimus dolore! Quod tempore magnam, sint quaerat amet facilis esse sunt culpa. Repellat atque incidunt, sit provident illum vel quae. Porro.

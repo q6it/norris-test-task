@@ -7,6 +7,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body, #root, .app, #app>div {
+  height: 100%
+}
+
+.app {
+  background: linear-gradient(180deg, #c7c7c7 10%, #ededed 90%);
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

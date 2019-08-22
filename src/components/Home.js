@@ -14,20 +14,38 @@ import { connect } from 'react-redux';
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
+    background: 'linear-gradient(180deg, #c7c7c7 10%, #ededed 90%)',
+    border: 0,
+    borderRadius: 3,
+    // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    // color: 'white',
+    height: '100%',
+    padding: '0 30px',
   },
   paper: {
-    padding: theme.spacing(5),
+    padding: theme.spacing(1),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    margin: 'auto',
+    maxWidth: 500,
   },
   button: {
-    margin: theme.spacing(1),
-    backgroundColor: '#3e2723',
+    "&:hover": {
+      backgroundColor: "transparent",
+      color: 'black'
+    },
+    margin: theme.spacing(2),
+    backgroundColor: '#474242',
+    color: 'white'
   },
+  jokeActionButtons: {
+    margin: theme.spacing(1),
+  }
 }));
 
 function Home (props) {
-  const [anchorEl, setAnchorEl] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
   const classes = useStyles();
   const refElement = useRef(null);
 
@@ -58,7 +76,7 @@ function Home (props) {
   }
 
   const fetchedJoke = props.state.value ? (
-    <div className={classes.root} ref={refElement} id={props.state.id}>{ props.state.value }</div>
+    <div className={classes.paper} ref={refElement} id={props.state.id}>{ props.state.value }</div>
     ) : (
       <div> Loading new jokes...</div>
     );
@@ -74,21 +92,24 @@ function Home (props) {
 
   return (
     <div className={classes.root}>
+        {/* <Paper className={classes.paper}> */}
       <Grid container
-        direction="column"
+        // direction="column"
         justify="center"
         alignItems="center"
       >
-        <Grid item xs={12}>
-          <Button variant="contained" color="primary" className={classes.button} onClick={getRandomJoke}>
-            Random
-          </Button>
+        <Grid container item xs={12} 
+          // direction="column"
+          justify="center"
+          alignItems="center"
+        >
           <Button variant="contained" color="primary" className={classes.button} onClick={handleClick}> Select Category</Button>
+          <Button variant="contained" color="inherit" className={classes.button} onClick={getRandomJoke}>Random</Button>
           <Menu
             id="simple-menu"
             anchorEl={anchorEl}
             keepMounted
-            open={Boolean(anchorEl)}
+            open={open}
             onClose={handleClose}
           >
             {
@@ -101,14 +122,15 @@ function Home (props) {
           </Menu>
         </Grid>
 
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>
+        <Grid container item xs={12}>
+          <Paper className={classes.paper} >
             { fetchedJoke }
-            <Button variant="contained" color="primary" className={classes.button} onClick={saveJoke}>Save</Button>
+            <Button className={classes.jokeActionButtons} variant="contained" color="inherit" onClick={saveJoke}>Save</Button>
             {/* { alertMessage } */}
           </Paper>
         </Grid>
       </Grid>
+      {/* </Paper> */}
     </div>
   );
   // }
