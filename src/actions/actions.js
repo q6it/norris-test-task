@@ -1,5 +1,4 @@
 import axios from 'axios';
-// import actionTypes from './actionTypes'
 
 const FETCH_JOKES = 'FETCH_JOKES';
 const FETCH_CATEGORY = 'FETCH_CATEGORY';
@@ -7,7 +6,6 @@ const SAVE_JOKE = 'SAVE_JOKE';
 const EDIT_JOKE = 'EDIT_JOKE';
 const DELETE_JOKE = 'DELETE_JOKE';
 const UPDATE_JOKE = 'UPDATE_JOKE';
-
 
 export function fetchJokes(category) {
   const randomUrl = 'https://api.chucknorris.io/jokes/random';

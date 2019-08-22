@@ -1,21 +1,17 @@
 import React from 'react';
+
+import { Link as RouterLink } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
+
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Grid from '@material-ui/core/Grid';
 
-import Link from '@material-ui/core/Link';
-import { Link as RouterLink } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  // root: {
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  //   alignItems: 'flex-end',
-  // },
   icon: {
     margin: theme.spacing(2),
     color: 'white',
@@ -28,14 +24,12 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     padding: theme.spacing(2),
-    // backgroundColor: '#f5f5f5',
     color: 'black',
     underline: 'hover',
   }
 }))
 
 function MobileNavbar() {
-  const ITEM_HEIGHT = 48;
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -51,7 +45,6 @@ function MobileNavbar() {
 
   return (
     <div>
-      {/* <Grid container> */}
         <IconButton
           aria-label="more"
           aria-controls="long-menu"
@@ -66,12 +59,6 @@ function MobileNavbar() {
           keepMounted
           open={open}
           onClose={handleClose}
-          // PaperProps={{
-          //   style: {
-          //     maxHeight: ITEM_HEIGHT * 4.5,
-          //     width: 200,
-          //   },
-          // }}
         >
         <MenuItem>
           <Link className={classes.link} component={RouterLink} to="/" onClick={handleClose}>Jokes</Link>
@@ -82,13 +69,9 @@ function MobileNavbar() {
         <MenuItem>
           <Link className={classes.link} component={RouterLink} to="/about" onClick={handleClose}>About</Link>
         </MenuItem>
-          {/* {options.map(option => (
-            <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-              {option}
-            </MenuItem>
-          ))} */}
+
         </Menu>
-      {/* </Grid> */}
+
     </div>
   )
 }

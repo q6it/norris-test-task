@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
 import Hidden from '@material-ui/core/Hidden';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import withWidth from '@material-ui/core/withWidth';
 import PropTypes from 'prop-types';
 import MobileNavbar from './MobileNavbar';
@@ -29,30 +28,14 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     padding: theme.spacing(2),
-    // backgroundColor: '#f5f5f5',
     color: 'white',
     underline: 'hover',
   }
 }));
 
-function NavbarMain(props) {
-  // const [open, setOpen] = React.useState(false);
+function NavbarMain() {
   const classes = useStyles();
-  // const matches = useMediaQuery('(min-width:600px)');
-  // console.log('TCL: ButtonAppBar -> matches', matches);
-  const { width } = props;
-  console.log('TCL: NavbarMain -> width', width);
 
-  // const [anchorEl, setAnchorEl] = React.useState(null);
-  // const open = Boolean(anchorEl);
-
-  // function handleClick(event) {
-  //   setAnchorEl(event.currentTarget);
-  // }
-
-  // function handleClose() {
-  //   setAnchorEl(null);
-  // }
   return (
       <div className={classes.root}>
           <Grid container>
@@ -62,9 +45,6 @@ function NavbarMain(props) {
                   <Typography variant="h6" className={classes.title}>
                     Chuck Norris Facts
                   </Typography>
-
-                  {/* <Typography>Current width: {width}</Typography> */}
-
                   <Hidden smUp>
                     <MobileNavbar />
                   </Hidden>
@@ -73,7 +53,6 @@ function NavbarMain(props) {
                     <Link className={classes.link} component={RouterLink} to="/favorites">Favorite jokes</Link>
                     <Link className={classes.link} component={RouterLink} to="/about" >About</Link>
                   </Hidden>
-                  {/* <span>{`(min-width:600px) matches: ${matches}`} test</span>; */}
                 </Toolbar>
               </AppBar>
             </Grid>

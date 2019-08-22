@@ -7,15 +7,6 @@ import About from './../components/About';
 // import Favorites from './../components/Favorites';
 
 class App extends Component {
-  // constructor(prop) {
-    // console.log("TCL: App -> constructor -> prop", prop)
-    // super(prop)
-    // bind this to functions or use arrow func
-    // this.Somefunc = this.Somefunc.bind(this)
-  // }
-  // Somefunc = (e) => {
-    // this.state.something
-  // }
   render () {
     return (
       <BrowserRouter>

@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 
 import  * as actionCreators from '../actions/actions';
 import EditJoke from './EditJoke';
@@ -6,15 +6,14 @@ import EditJoke from './EditJoke';
 import { makeStyles } from "@material-ui/core/styles"
 import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
 import { connect } from "react-redux"
-// import classes from '*.module.css';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3, 2)
+    flexGrow: 1,
   },
   paper: {
     padding: theme.spacing(1),
@@ -32,13 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 function FavoriteJokes(props) {
   const classes = useStyles();
-  // const refElement = useRef(null);
-  // render() {
-  console.log("favorite comp props", props)
   const favoriteJokes = props.state.savedJokes ? props.state.savedJokes : "no saved jokes jet"
-
-  console.log("TCL: //render -> favoriteJokes", favoriteJokes)
-
   const deleteJoke = id => {
     props.deleteJoke(id)
   }
@@ -50,10 +43,7 @@ function FavoriteJokes(props) {
   return (
     <div className={classes.root}>
       {Object.values(favoriteJokes).map((value, i) => {
-    console.log('TCL: //render -> value', value);
-      // return <div key={i}>{value.joke}</div>
       return !value.edit ? <Paper className={classes.paper} key={i} id={value.id} >
-      {/* <Typography variant="h6" component="h3" ref={value => this.getTextValue = value}> */}
       <Typography variant="h6" component="h3" >
         {value.joke}
       </Typography>
@@ -76,7 +66,6 @@ const mapDispatchToProps = dispatch => {
   return {
     deleteJoke: id => dispatch(actionCreators.deleteJoke(id)),
     editJoke: id => dispatch(actionCreators.editJoke(id))
-    // updateJoke
   }
 }
 
