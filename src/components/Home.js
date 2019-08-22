@@ -74,7 +74,6 @@ function Home (props) {
   return (
     <div className={classes.root}>
       <Grid container
-        // direction="column"
         justify="center"
         alignItems="center"
       >

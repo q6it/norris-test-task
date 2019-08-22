@@ -30,8 +30,6 @@ const rootReducer = (state = initState, action) => {
           {
             id: action.id,
             joke: action.joke,
-            // category: action.category
-            //jokeCreated: action.created_at
             edit: false,
             saved: false
           }
@@ -50,12 +48,6 @@ const rootReducer = (state = initState, action) => {
   } else if (action.type === 'EDIT_JOKE') {
     return {
       ...state,
-      // savedJokes: state.savedJokes.map(joke => {
-      //   return joke.id === action.id ? {
-      //     ...joke, 
-      //     edit: !joke.edit
-      //   }: joke
-      // })
       savedJokes: state.savedJokes.map(joke => joke.id === action.id ? {...joke, edit:!joke.edit}: joke)
     }
   } else if (action.type === 'UPDATE_JOKE'){

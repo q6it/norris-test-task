@@ -6,7 +6,6 @@ import EditJoke from './EditJoke';
 import { makeStyles } from "@material-ui/core/styles"
 import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
-// import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
 import { connect } from "react-redux"
@@ -53,7 +52,6 @@ function FavoriteJokes(props) {
     })}
     </div>
   )
-  // }
 }
 
 const mapStateToProps = state => {
